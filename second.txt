@@ -1,0 +1,1 @@
+Test text from copy file to file.
