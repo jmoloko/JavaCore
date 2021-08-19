@@ -60,12 +60,13 @@ class Runner {
     public void firstTread() {
         Random random = new Random();
         for (int i = 0; i < 10000; i++) {
-            takeLocks(lock1, lock2);
+//            takeLocks(lock1, lock2);
+            lock1.lock();
             try {
                 Account.transfer(account1, account2, random.nextInt(100));
             } finally {
                 lock1.unlock();
-                lock2.unlock();
+//                lock2.unlock();
             }
         }
     }
@@ -73,12 +74,13 @@ class Runner {
     public void secondThread() {
         Random random = new Random();
         for (int i = 0; i < 10000; i++) {
-            takeLocks(lock2, lock1);
+//            takeLocks(lock2, lock1);
+            lock1.lock();
             try {
                 Account.transfer(account2, account1, random.nextInt(100));
             } finally {
                 lock1.unlock();
-                lock2.unlock();
+//                lock2.unlock();
             }
         }
     }
